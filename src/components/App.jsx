@@ -54,7 +54,7 @@ const App = props => {
                      <DropdownButton/>
 
                      <button
-                        onClick={selectFlyFrom}
+                        
                     >Submit</button>
 
                     </>
