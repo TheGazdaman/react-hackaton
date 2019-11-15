@@ -3,7 +3,6 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
 const FlyToButton = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  console.log('props',props);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
 

@@ -3,7 +3,6 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
 const FlyFromButton = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  console.log('props',props);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
   
@@ -21,7 +20,6 @@ const FlyFromButton = (props) => {
 
   return (
     <Dropdown onChange={(code) => {
-      console.log(code);
       
     }} isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
