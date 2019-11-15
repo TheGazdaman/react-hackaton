@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { DateTime } from 'luxon';
-import DropdownButton from './DropdownButton.jsx'
+import FlyFromButton from './FlyFromButton.jsx';
+import FlyToButton from './FlyToButton.jsx';
 
 
 const App = props => {
 
-    const URL = `https://api.skypicker.com/flights?&fly_from=PRG&fly_to=VLC&partner=picky&limit=1&max_stopovers=0`;
+    const URL = 'https://api.skypicker.com/flights?&fly_from=PRG&fly_to=VLC&partner=picky&limit=1&max_stopovers=2';
 
 
     const [outputValues, setOutputValues] = useState([]);
@@ -26,6 +27,15 @@ const App = props => {
             })
         },[])
     
+    }
+
+    const selectFrom = () => {
+        setFlyFrom()
+
+    }
+
+    const selectTo = () => {
+        
     }
 
     callApi(URL);
@@ -51,8 +61,8 @@ const App = props => {
                     })}
                 
                      <p>{flightData.price}</p>
-                     <DropdownButton/>
-
+                     <FlyFromButton/>
+                     <FlyToButton/>
                      <button
                         
                     >Submit</button>

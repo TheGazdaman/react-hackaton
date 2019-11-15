@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-const DropdownButton = (props) => {
+const FlyToButton = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   console.log('props',props);
 
@@ -10,7 +10,7 @@ const DropdownButton = (props) => {
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
-        Dropdown
+        Fly to
         </DropdownToggle>
       <DropdownMenu>
         <DropdownItem>Valencia</DropdownItem>
@@ -23,4 +23,4 @@ const DropdownButton = (props) => {
   );
 }
 
-export default DropdownButton;
+export default FlyToButton;
