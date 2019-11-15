@@ -29,7 +29,7 @@ const FlyFromButton = (props) => {
         </DropdownToggle>
       <DropdownMenu>
         <DropdownItem key={'PRG'} onClick={onButtonClick}><li value="PRG" id="PRG">Prague</li></DropdownItem>
-        <DropdownItem key={'SFX'} onClick={onButtonClick}><li value="SFX" id="SFX">Berlin</li></DropdownItem>
+        <DropdownItem key={'SXF'} onClick={onButtonClick}><li value="SXF" id="SXF">Berlin</li></DropdownItem>
         <DropdownItem key={'WAW'} onClick={onButtonClick}><li value="WAW" id="WAW">Warsaw</li></DropdownItem>
         <DropdownItem key={'PED'} onClick={onButtonClick}><li value="PED" id="PED">Pardubice</li></DropdownItem>
       </DropdownMenu>
