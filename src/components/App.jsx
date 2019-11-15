@@ -6,13 +6,20 @@ import FlyToButton from './FlyToButton.jsx';
 
 const App = props => {
 
-    const URL = 'https://api.skypicker.com/flights?&fly_from=PRG&fly_to=VLC&partner=picky&limit=1&max_stopovers=2';
+    
 
 
     const [outputValues, setOutputValues] = useState([]);
-    const [flyFrom, setFlyFrom] = useState('');
+    const [flyFrom, setFlyFrom] = useState('PRG');
     const [flyTo, setFlyTo] = useState('');
 
+    let URL = `https://api.skypicker.com/flights?&fly_from=${flyFrom}&fly_to=VLC&partner=picky&limit=1&max_stopovers=1`;
+
+     const changeFlyFrom = (flyFrom) => {
+        setFlyFrom(flyFrom)
+
+    }
+    
     const callApi = (url) => {
 
 
@@ -20,26 +27,15 @@ const App = props => {
             fetch(url)
             .then(response => response.json())
             .then(data => {
-
-                console.log('data', data);
                 
                 setOutputValues(data.data)
             })
-        },[])
+        },[flyFrom])
     
     }
 
-    const selectFrom = () => {
-        setFlyFrom()
-
-    }
-
-    const selectTo = () => {
-        
-    }
 
     callApi(URL);
-    console.log(outputValues.length);
 
     return (
         <div>
@@ -61,7 +57,7 @@ const App = props => {
                     })}
                 
                      <p>{flightData.price}</p>
-                     <FlyFromButton/>
+                     <FlyFromButton key={flyFrom} changeFlyFrom={changeFlyFrom} />
                      <FlyToButton/>
                      <button
                         
