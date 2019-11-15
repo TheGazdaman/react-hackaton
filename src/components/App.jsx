@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { DateTime } from 'luxon';
+import DropdownButton from './DropdownButton.jsx'
 
 
-const URL = 'https://api.skypicker.com/flights?cityFrom=Prague&flyFrom=CZ&cityTo=Berlin&flyTo=GER&partner=picky&limit=1&max_stopovers=0'
 const App = props => {
+
+    const URL = `https://api.skypicker.com/flights?&fly_from=PRG&fly_to=VLC&partner=picky&limit=1&max_stopovers=0`;
 
 
     const [outputValues, setOutputValues] = useState([]);
+    const [flyFrom, setFlyFrom] = useState('');
+    const [flyTo, setFlyTo] = useState('');
 
     const callApi = (url) => {
 
@@ -25,11 +29,11 @@ const App = props => {
     }
 
     callApi(URL);
-    console.log(outputValues);
+    console.log(outputValues.length);
 
     return (
         <div>
-            {outputValues.map((flightData) => {
+            {outputValues.length ? outputValues.map((flightData) => {
                 return (
                     <>
                     {flightData.route.map((route) => {
@@ -39,18 +43,25 @@ const App = props => {
                                 <p>{route.flyTo}</p>
                                 <p>{route.cityFrom}</p>
                                 <p>{route.cityTo}</p>
-                                <p>{DateTime.fromMillis(route.aTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
                                 <p>{DateTime.fromMillis(route.dTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
+                                <p>{DateTime.fromMillis(route.aTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
+                                
                             </>
                         )
                     })}
                 
                      <p>{flightData.price}</p>
+                     <DropdownButton/>
+
+                     <button
+                        onClick={selectFlyFrom}
+                    >Submit</button>
+
                     </>
                    
                 )
             }) 
-        }      
+        : 'Loading...'}      
         </div>
     );
 };
