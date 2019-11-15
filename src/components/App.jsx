@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { DateTime } from 'luxon';
 
 
 const URL = 'https://api.skypicker.com/flights?cityFrom=Prague&flyFrom=CZ&cityTo=Berlin&flyTo=GER&partner=picky&limit=1&max_stopovers=0'
@@ -6,7 +7,6 @@ const App = props => {
 
 
     const [outputValues, setOutputValues] = useState([]);
-
 
     const callApi = (url) => {
 
@@ -28,33 +28,31 @@ const App = props => {
     console.log(outputValues);
 
     return (
-
-        
-
         <div>
             {outputValues.map((flightData) => {
                 return (
-
-                    
-                    <p>{flightData.price}</p>
-                )
-            })
-        }
-
-
+                    <>
+                    {flightData.route.map((route) => {
+                        return (
+                            <>
+                                <p>{route.flyFrom}</p>
+                                <p>{route.flyTo}</p>
+                                <p>{route.cityFrom}</p>
+                                <p>{route.cityTo}</p>
+                                <p>{DateTime.fromMillis(route.aTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
+                                <p>{DateTime.fromMillis(route.dTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
+                            </>
+                        )
+                    })}
                 
-         
+                     <p>{flightData.price}</p>
+                    </>
+                   
+                )
+            }) 
+        }      
         </div>
-
-        // 'bananas'
-
-
-
-
     );
-
-
-
 };
 
 export default App;
