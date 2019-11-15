@@ -40,30 +40,31 @@ const App = props => {
     callApi(URL);
 
     return (
-        <div>
+        <div><h1>Fly happy!</h1> 
             {outputValues.length ? outputValues.map((flightData) => {
                 return (
                     <>
+                    <div className="selection">
+                     <div><FlyFromButton key={flyFrom} changeFlyFrom={changeFlyFrom} /></div>
+                     <div><FlyToButton key={flyTo} changeFlyTo={changeFlyTo}/></div>
+                     </div>
                     {flightData.route.map((route) => {
                         return (
-                            <>
-                                <p>{route.flyFrom}</p>
-                                <p>{route.flyTo}</p>
-                                <p>{route.cityFrom}</p>
-                                <p>{route.cityTo}</p>
-                                <p>{DateTime.fromMillis(route.dTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
-                                <p>{DateTime.fromMillis(route.aTime * 1000).toFormat('yyyy LLLL dd hh:mm')}</p>
+                            <div className="flights">
+                                <div className="flight-data">Fly from: {route.flyFrom}</div>
+                                <div className="flight-data">{route.cityFrom}</div>
+                                <div className="flight-data">Departure: {DateTime.fromMillis(route.dTime * 1000).toFormat('yyyy LLLL dd hh:mma')}</div>
+                                <div className="flight-data">Fly to: {route.flyTo}</div>
+                                <div className="flight-data">{route.cityTo}</div>
+                                <div className="flight-data">Arrival: {DateTime.fromMillis(route.aTime * 1000).toFormat('yyyy LLLL dd hh:mma')}</div>
                                 
-                            </>
+                            </div>
                         )
                     })}
                 
-                     <p>{flightData.price}</p>
-                     <FlyFromButton key={flyFrom} changeFlyFrom={changeFlyFrom} />
-                     <FlyToButton key={flyTo} changeFlyTo={changeFlyTo}/>
-                     <button
-                        
-                    >Submit</button>
+                     <div className="flight-data">Price: {flightData.price} EUR</div>
+                    
+                     
 
                     </>
                    
